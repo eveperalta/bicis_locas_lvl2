@@ -3,6 +3,7 @@ function validateForm(){
 	validarCampoTexto($("#lastname"));
 	ValidaEmail($("#input-email"));
 	validaPwd($("#input-password"));
+	validarChkbx($(".checkbox"))
 };
 //validate name, lastname
 function validarCampoTexto(input){
@@ -64,6 +65,14 @@ function mostrarMsg(mensaje, input){
 	$(input).parent().append(span_nombre);
 };
 //funcion para el checkbox
+function validarChkbx(input){
+	if($(':checkbox').is(":checked")){
+		return
+	}else{
+		var span_nombre = $("<span class='error'>" + "Este botón es obligatorio" + "</span>");
+		$(':checkbox').parent().append(span_nombre);
 
-
+	}
+};
+        
 //funcion para el select
