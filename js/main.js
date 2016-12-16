@@ -84,10 +84,10 @@ function validarSelect(input){
 	}
 };
 
-//funcion para esconder el formulario
+/*funcion para esconder el formulario
 $(".form-signup").on("submit",function onClickClose(){
     $(".form-signup").hide();
-});
+});*/
 
 // ajax!
 $.ajax({
