@@ -112,5 +112,23 @@
   width: 250px;
   color: #fff;
 }
-
+.error2{
+  position: absolute;
+  margin-bottom: 5px;
+  left: 105%;
+  top: 10px;
+  width: 300px;
+  padding: 5px;
+  background-color:rgba(51,51,51,0.8);; 
+  color: #fff;
+}
+#avatar img {
+ width: 200px;
+ height: 200px;
+}
+#planetas{
+  background-color: #fff;
+  width: auto;
+  height: auto;
+}
 

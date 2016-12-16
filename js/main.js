@@ -3,7 +3,8 @@ function validateForm(){
 	validarCampoTexto($("#lastname"));
 	ValidaEmail($("#input-email"));
 	validaPwd($("#input-password"));
-	validarChkbx($(".checkbox"))
+	validarChkbx($(".checkbox"));
+	validarSelect($(".form-control"));
 };
 //validate name, lastname
 function validarCampoTexto(input){
@@ -76,3 +77,46 @@ function validarChkbx(input){
 };
         
 //funcion para el select
+function validarSelect(input){
+	if($("select").val()== 0){
+		 var span_nombre = $("<span class='error2'>" + "Selecciona un tipo de Bici" + "</span>");
+		$('select').parent().append(span_nombre);
+	}else{
+		return;
+	}
+};
+
+// ajax!
+$.ajax({
+  		url: 'http://swapi.co/api/planets',
+  		type: 'GET',
+  		success: function(data){
+  			// aca si la funcion es exitosa
+  			var planetas = data.results;
+  			var lista = $('#planetas ul');
+
+  			for (var i=0 ; i<planetas.length ; ++i){
+  				lista.append('<li>Planeta <b>' + planetas[i].name + '</b> Poblacion: ' + planetas[i].population + '</li>');
+  			}
+  		},
+  		error: function(error){
+  			// en el caso de error
+  			console.log('error');
+  		}
+});
+
+//cambiar avatar
+$("#cambiarAvatar").on("change", function (evento){
+	//recuperar archivo subido
+	var archivo= $ (this)[0].files[0];
+	//crear file reader, es un objeto de JS para leer archivos
+	var reader = new FileReader();
+	//decrile al fr que hacer cuando termine de cargar
+	reader.onload = function(efr){
+		$("#avatar img").attr("src", efr.target.result);
+	}
+	//cargar la imagen
+	reader.readAsDataURL(archivo);
+
+});
+
