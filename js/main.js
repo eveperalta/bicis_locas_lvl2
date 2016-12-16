@@ -81,10 +81,13 @@ function validarSelect(input){
 	if($("select").val()== 0){
 		 var span_nombre = $("<span class='error2'>" + "Selecciona un tipo de Bici" + "</span>");
 		$('select').parent().append(span_nombre);
-	}else{
-		return;
 	}
 };
+
+//funcion para esconder el formulario
+$(".form-signup").on("submit",function onClickClose(){
+    $(".form-signup").hide();
+});
 
 // ajax!
 $.ajax({
@@ -120,3 +123,35 @@ $("#cambiarAvatar").on("change", function (evento){
 
 });
 
+//cambie div a form para hacer q guarde en localstorage
+$("form").on("submit", function(es){
+	//evitar q se envie el form
+	es.preventDefault();
+
+	//seleccionar el archivo de la imagen
+	var archivo = $("#cambiarAvatar")[0].files[0];
+
+	//creamos filereader
+	var reader = new FileReader();
+
+	//que hacer cuando termine de cargar
+	reader.onloadend = function(efr){
+		var datos_imagen = reader.result;
+		//se guarda imagen en localstorage
+		localStorage.setItem("avatar_data", datos_imagen);
+		alert("foto de perfil actualizada");
+	}
+	//leer la imagen+
+	if(archivo){
+		reader.readAsDataURL(archivo);
+	}
+});
+//al cargar la pagina recuperar imagen del ls
+$(document).ready(function(){
+	//recuperar datos del ls
+	var avatar_data = localStorage.getItem ("avatar_data");
+	//cambiar la foto por defecto
+	if(avatar_data){
+		$("#avatar img").attr("src",avatar_data);
+	}
+});
